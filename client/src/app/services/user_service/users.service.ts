@@ -11,6 +11,7 @@ export class UsersService {
 
   public API_URI: string = "http://localhost:8000";
 
+  
   constructor(private http: HttpClient) { }
 
   public requestRegister(register: Register): Observable<Register>{
