@@ -1,6 +1,6 @@
 # Manga-Reader
 
-Realice, con Ionic Framework basado en Angular, una aplicación móvil híbrida que funcione como un lector de manga o cómic, donde podrán subirse series con sus
+Con Ionic Framework basado en Angular, se realizara una aplicación móvil híbrida que funcione como un lector de manga o cómic, donde podrán subirse series con sus
 respectivos capítulos. Los usuarios podrán leer los capítulos, sea cual sea su rol.
 
 La subida de archivos debe ser múltiple, es decir que, el usuario puede subir varios archivos a la vez para publicar el episodio. Todos los usuarios registrados tienen la
