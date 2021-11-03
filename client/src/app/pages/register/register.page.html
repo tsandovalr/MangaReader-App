@@ -1,0 +1,34 @@
+
+<ion-content [fullscreen]="true">
+
+  <div class="main_content_div" [class.ios_pad]="plt == 'ios'">
+    
+    <div class="upper_div">
+      <div class="yellow_div" [class.yellow_div_ios]="plt == 'ios'"></div>
+    </div>
+
+    <div class="lower_div">
+      <ion-label class="head_lbl">Sign Up</ion-label>
+
+      <ion-row>
+        <ion-col>
+          <ion-slides>
+            <ion-slide >
+              <img class="pick-avatar" [src]="imgSrc"/>
+            </ion-slide>
+          </ion-slides>
+        </ion-col>
+      </ion-row>
+      
+      <ion-input [(ngModel)]="register.name" type="text" placeholder="First Name"></ion-input>
+      <ion-input [(ngModel)]="register.lastname" type="text" placeholder="Last Name"></ion-input>
+      <ion-input [(ngModel)]="register.email" type="email" placeholder="Email"></ion-input>
+      <ion-input [(ngModel)]="register.password" type="password" placeholder="Password"></ion-input>
+
+      <ion-button expand="block" (click)="registerUser()">Sign Up</ion-button>
+
+      <p style="text-align: center;"><a href="/login">Already have an Account ? Login </a></p>
+    </div>
+  </div>
+
+</ion-content>
