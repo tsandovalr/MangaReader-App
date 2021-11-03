@@ -11,6 +11,7 @@ import { UserAvatar } from './avatar.model';
 })
 @Injectable({
     providedIn: 'root'
+    
 })
 export class StateAvatar{
     @Selector()

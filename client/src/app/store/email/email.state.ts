@@ -13,6 +13,7 @@ import { UserEmail } from './email.model';
     providedIn: 'root'
 })
 export class StateEmail{
+    
     @Selector()
     static getEmail(state: UserEmail){
         return state.email;

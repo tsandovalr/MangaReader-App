@@ -13,6 +13,7 @@ import { Token } from './token.model'
     providedIn: 'root'
 })
 export class TokenState{
+    
     @Selector()
     static getToken(state: Token) {
         return state.token;
