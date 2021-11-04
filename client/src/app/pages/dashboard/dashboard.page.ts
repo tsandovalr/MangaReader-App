@@ -14,7 +14,7 @@ export class DashboardPage {
    * It contains the latest changes and updates
    */
   private lastupdates: IPost[];
-//
+
   /**
    * A list of news on the home page
    */

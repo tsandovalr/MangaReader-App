@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DashboardPage } from './dashboard.page';
 
-//
+
 @NgModule({
   imports: [
     IonicModule,

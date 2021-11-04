@@ -9,7 +9,7 @@ export interface IPost {
   rating: any;
 }
 
-//
+
 export interface IPostFull {
   id: string;
   name: string;

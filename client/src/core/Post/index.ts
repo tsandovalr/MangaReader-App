@@ -7,7 +7,7 @@ export class Post {
    * An instance of a class for working with API through a small wrapper
    */
   private api: API;
-
+//
   constructor() {
     if (config.logined === true) {
       this.api = new API({

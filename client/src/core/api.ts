@@ -10,7 +10,7 @@ export interface AxiosSettings {
   baseURL?: string;
   responseType?: string;
 }
-//
+
 /**
  * Wrap Class for Quick Request Changes
  * @param {AxiosSettings} settings settingsForInstallationon
