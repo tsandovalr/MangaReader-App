@@ -4,7 +4,7 @@ import { IPostFull, IPost, RequestParam } from './interfaces';
 
 export class Post {
   /**
-   * Экземпляр класса для работы с апи через небольшую обертку
+   * An instance of a class for working with API through a small wrapper
    */
   private api: API;
 
@@ -22,10 +22,10 @@ export class Post {
   }
 
   /**
-   * Получить полную информацию о посте, включая эпизоды его
+   * Get full information about post, including episodes
    * @async
-   * @param {string} id uuid поста
-   * @returns {Promise<IPostFull>} результат
+   * @param {string} id uuid post
+   * @returns {Promise<IPostFull>} result
    */
   async get(id: string): Promise<IPostFull> {
     const url = `/posts/${id}`;
@@ -35,10 +35,10 @@ export class Post {
   }
 
   /**
-   * Получение всех постов
+   * Getting all posts
    * @async
-   * @param {string} query Запрос, может быть null
-   * @param {RequestParam} params параметры запроса
+   * @param {string} query Request, maybe null
+   * @param {RequestParam} params Request Parameters
    * @returns {Promise<IPost[]>}
    */
   async getAll(query: string, params: RequestParam): Promise<IPost[]> {
