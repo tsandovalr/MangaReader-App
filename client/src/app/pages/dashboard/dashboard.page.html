@@ -1,0 +1,40 @@
+<ion-content>
+  <ion-slides class="slider main" style="background: black" id="slides" pager>
+    <ion-slide style="background: rgb(110, 108, 108); color: white;">
+      <h1>Slide 1</h1>
+    </ion-slide>
+    <ion-slide style="background: white; color: rgb(63, 63, 177);">
+      <h1>Slide 2</h1>
+    </ion-slide>
+    <ion-slide style="background: rgb(53, 53, 141); color: white;">
+      <h1>Slide 3</h1>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-card>
+    <ion-list>
+      <ion-card-header>
+        <ion-card-title>Обновления</ion-card-title>
+      </ion-card-header>
+
+      <ion-item *ngFor="let item of lastupdates" (click)="openPost(item.id)">
+        <ion-thumbnail slot="start" class="cover">
+          <img src="{{ item.cover }}">
+        </ion-thumbnail>
+        <ion-label>{{ item.name }}</ion-label>
+      </ion-item>
+
+    </ion-list>
+  </ion-card>
+
+  <ion-card *ngFor="let item of news">
+    <ion-img src="{{ item.cover }}"></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{ item.title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ item.annotation }}</p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
