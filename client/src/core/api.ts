@@ -1,4 +1,4 @@
-import { HTTP, HTTPOriginal } from '@ionic-native/http';
+import { HTTP} from '@ionic-native/http';
 import { RequestParam } from './Post/interfaces';
 import { config } from './config';
 
@@ -28,7 +28,7 @@ export class API {
    * @description Variable for storing a class instance to work with http
    * @type {HTTP}
    */
-  private http: HTTPOriginal;
+  private http: HTTP;
   /**
    * @private
    * @description Contains an API link
@@ -48,7 +48,7 @@ export class API {
    */
   constructor(settings: AxiosSettings) {
     this.settings = settings;
-    this.http = new HTTPOriginal();
+    this.http = new HTTP();
     if (this.settings.auth) {
       this.http.useBasicAuth(settings.auth.username, settings.auth.password);
     }
