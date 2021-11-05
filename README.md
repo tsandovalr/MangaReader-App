@@ -17,7 +17,4 @@ izquierda. También deberá contar con la opción de compartir con sus redes soc
 Ahora bien, dentro de los propios capítulos, un usuario registrado y autenticado tiene la posibilidad de hacer comentarios y responder a comentarios de otros usuarios. Los
 comentarios sólo pueden ser editados por su autor, y sólo pueden ser eliminados por su autor o por el administrador.
 
-● Primera entrega (11-11-21): inicio de sesión, CRUD de contenido.
 
-● Segunda entrega (18-11-21): social sharing, seguimiento de series, CRUD de
-comentarios
