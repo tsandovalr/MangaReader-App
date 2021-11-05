@@ -29,7 +29,9 @@ export class LoginPage implements OnInit {
     private store: Store, 
     private messagesService: MessagesService) {}
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.store.snapshot();
+  }
 
   public async loginUser(){
     /* let {token} = this.store.snapshot();
