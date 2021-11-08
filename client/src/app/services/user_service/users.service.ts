@@ -10,7 +10,7 @@ import { Register } from '../../interfaces/register';
 export class UsersService {
 
  //public API_URI: string = "https://manga-reader-node.herokuapp.com";
- public API_URI: string = "http://localhost:8000";
+ public API_URI: string = "http://localhost:8200";
   
   constructor(private http: HttpClient) { }
 

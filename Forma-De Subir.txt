@@ -1,0 +1,2 @@
+1.- La carpeta server es para el repositorio en github
+2.- La carpeta server-node es para heroku

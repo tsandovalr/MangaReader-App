@@ -1,13 +1,39 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>dashboard</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
- 
- <div>
+  <ion-searchbar ></ion-searchbar>
+ <!-- <div>
    <app-upload-files></app-upload-files>
+ </div>  -->
+ <div >
+   <div *ngFor="let manga of mangas" style="grid-row: auto;">
+    <ion-item >
+      <ion-card >
+        <ion-card-header >{{manga.name}}</ion-card-header>
+        <ion-button [routerLink]="['/manga-creation/edit/', manga.manga_id]">Edit</ion-button>
+        <ion-button (click)="deleteManga(manga.manga_id)">Delete</ion-button> 
+        <img style="margin-left: 24%;" width="150" class="img" [src]="manga.manga_photo">
+        <!-- <ion-card-content style="text-align: center;">{{manga.description}}</ion-card-content> -->
+      </ion-card>
+    </ion-item>
+   </div>
+  
+  <ion-tabs>
+   <ion-tab-bar slot="bottom">
+     <ion-tab-button tab="profile">
+       <ion-icon name="person-circle"></ion-icon>
+       <ion-label>Profile</ion-label>
+     </ion-tab-button>
+ 
+     <ion-tab-button tab="manga-creation">
+       <ion-icon name="add-circle"></ion-icon>
+       <ion-label>Creation Manga</ion-label>
+     </ion-tab-button>
+ 
+     <ion-tab-button tab="settings">
+       <ion-icon name="settings"></ion-icon>
+       <ion-label>Settings</ion-label>
+     </ion-tab-button>
+   </ion-tab-bar>
+ </ion-tabs>
  </div>
 
 </ion-content>

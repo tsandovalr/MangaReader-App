@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
-/* import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer'; */
+import { MangaService } from '../../services/user_service/manga.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,89 +9,34 @@ import { Router } from '@angular/router';
 })
 export class DashboardPage implements OnInit {
 
+  @HostBinding('class') classes = 'row'
+  public mangas: any = []
+
   constructor(
-    private router: Router,
-    /*private fileTransfer: typeof FileTransfer , */
+    private mangaService: MangaService,
+    private router: Router
     ) { }
 
   ngOnInit() {
+    this.getMangas()
   }
 
-  click1(){
-    this.router.navigate(['/grid-home'])
+  public getMangas(){
+    this.mangaService.getMangas().subscribe(res =>{
+      this.mangas = res;
+    },
+    err => {
+      console.log(err);
+    });
   }
 
-  click2(){
-    this.router.navigate(['/parallax-home'])
+  public deleteManga(id: string | number){
+    this.mangaService.deleteManga(id).subscribe(
+      res =>{
+        console.log(res);
+        this.getMangas();
+      },
+      err => console.log(err)
+    )
   }
-
-
-  /* uploadAllImage()
-  {
-    const fileTransfer:FileTransferObject = this.fileTransfer.create();
-
-    const filetype = '';
-    const itemtype = '';
-
-    for(let i=0; i<this.photos.length; i++)
-    {
-
-      //Obtener el tipo de archivo.
-      filetype = this.itemtypes[i];
-
-      //Obtenemos el mime type dependiendo del tipo recuperado antes.
-      switch(filetype)
-      {
-        case "audio":
-        {
-          itemtype = 'audio/amr';
-          break;
-        }
-        case 'video':
-        {
-          itemtype = 'video/quicktime';
-          break;
-        }
-        case 'image':
-        {
-          itemtype = 'image/jpeg';
-          break;
-        }
-        default:
-        {
-          return;
-        }
-      }
-
-
-      //Fijamos el nombre del archivo.
-      var name ='pinglun_' + filetype;
-      name = name + '#';
-      name = name + this.photosName[i];
-
-      //Seteamos el mime type de la petición.
-      let option: FileUploadOptions = {
-        fileKey:'file',
-        mimeType:itemtype,
-        httpMethod:'POST',
-        fileName:name
-      };
-
-      if(filetype == 'image')
-      {
-        fileTransfer.upload(this.photos[i], encodeURI(localStorage.getItem('mi_dominio') + "/upload"),option).then((result)=>{
-
-        },(error) => {
-
-        });
-      } else {
-        fileTransfer.upload(this.fileurls[i], encodeURI(localStorage.getItem('mi_dominio') + "/upload"),option).then((result)=>{
-
-        }, (error) => {
-
-        });
-      }
-    } 
-  }
-    */
 }

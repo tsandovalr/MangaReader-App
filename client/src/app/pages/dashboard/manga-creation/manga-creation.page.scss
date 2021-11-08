@@ -1,0 +1,41 @@
+.contactFormList {
+    margin-top: 20px;
+    .inputs-item {
+    border: 1px solid lightcyan;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    }
+    .img {
+        border: 1px solid lightcyan;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        margin: 10px;
+        margin-left: 22%;
+        }
+}
+.sendBtn {
+    border-radius: 10px;
+}
+.footerContent {
+    margin-top: 10px;
+    .infoFooter {
+        color: gray;
+        font-size: 10px;
+    }
+    .footerImage {
+        height: 25px;
+    }
+    .footerImageW {
+        height: 25px;
+        margin-left: 82%;
+    }
+}
+
+.img_selected{
+    width: 100%;
+    height: 200px;
+}
+
+ion-button{
+    --border-radius: 5px;
+    margin: 10px;
+}

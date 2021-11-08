@@ -1,0 +1,41 @@
+  <ion-list lines="none" class="contactFormList" >
+    <img class="img"  width="200" [src]="manga.manga_photo == '' ? 'https://extyseg.com/wp-content/uploads/2019/04/EXTYSEG-imagen-no-disponible.jpg': manga.manga_photo" (click)="getImages()">
+  
+    <ion-item class="inputs-item" lines="none">
+      <ion-input type="text" name="title" [(ngModel)]="manga.name" placeholder="Title" autofocus></ion-input>
+    </ion-item>
+
+    <ion-item class="inputs-item" lines="none" >
+      <ion-input type="text" name="genres" [(ngModel)]="manga.genres" placeholder="Genres" autofocus></ion-input>
+    </ion-item>
+    
+    <ion-item class="inputs-item" lines="none" >
+      <ion-input type="url" name="image" [(ngModel)]="manga.manga_photo" placeholder="Image URL" autofocus></ion-input>
+    </ion-item>
+
+    <ion-item class="inputs-item" lines="none" >
+      <ion-input type="text" name="artist" [(ngModel)]="manga.artist" placeholder="Artist" autofocus></ion-input>
+    </ion-item>
+
+    <ion-item class="inputs-item" lines="none" >
+      <ion-input type="text" name="author" [(ngModel)]="manga.author" placeholder="Author" autofocus></ion-input>
+    </ion-item>
+
+    <ion-item class="inputs-item" lines="none" >
+      <ion-input type="text" name="publisher" [(ngModel)]="manga.publisher" placeholder="Publisher" autofocus></ion-input>
+    </ion-item>
+
+    <ion-item class="inputs-item" lines="none" >
+      <ion-input type="text" name="copyright" [(ngModel)]="manga.copyright" placeholder="Copyright" autofocus></ion-input>
+    </ion-item>
+
+    <ion-item class="inputs-item" lines="none">
+      <ion-textarea name="description" [(ngModel)]="manga.description" placeholder="Description" rows="6"></ion-textarea>
+    </ion-item>
+    
+    <ion-button expand="block" (click)="edit ? updateManga() :saveNewManga()">Create Manga</ion-button> 
+        
+  </ion-list>
+
+ 
+

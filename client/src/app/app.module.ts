@@ -12,10 +12,11 @@ import { StateAvatar } from "./store/avatar/avatar.state";
 import { StateEmail } from "./store/email/email.state";
 import { IonicStorageModule } from "@ionic/storage-angular";
 import { ComponentsModule } from './components/components.module';
+import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   entryComponents: [],
   imports: [
@@ -30,6 +31,7 @@ import { ComponentsModule } from './components/components.module';
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    Camera
   ],
   bootstrap: [AppComponent],
 })

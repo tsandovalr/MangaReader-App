@@ -30,7 +30,7 @@ export class LoginPage implements OnInit {
     private messagesService: MessagesService) {}
 
   ngOnInit() { 
-    this.store.snapshot();
+    //this.store.snapshot();
   }
 
   public async loginUser(){

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment';
 import { HttpClient, HttpRequest, HttpEvent,HttpParams, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Store } from '@ngxs/store'; 
@@ -10,7 +9,7 @@ import { Store } from '@ngxs/store';
 export class UploadFilesService {
 
  //Url obtenida de la variable de enviroments
- baseUrl = environment.baseUrl;
+ //baseUrl = environment.baseUrl;
  public URL_FILES: string = 'http://localhost:8000';
 
  //Inyeccion de HttpClient
