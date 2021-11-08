@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard" ></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">View Manga</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngFor="let manga of mangas">
+    <ion-card>
+      <img [src]="manga.manga_photo" >
+      <p class="p1" style="text-align: center;">{{manga.name}}</p>
+      <p class="p2" style="text-align: center;">{{manga.description}}</p>
+      <p class="p1" > Author</p>
+      <p class="p2" >{{manga.author}}</p>
+      <p class="p1" >Artist</p>
+      <p class="p2" >{{manga.artist}}</p>
+      <p class="p1" >Publisher</p>
+      <p class="p2" >{{manga.publisher}}</p>
+      <p class="p1" >Copyright</p>
+      <p class="p2" >{{manga.copyright}}</p>
+    </ion-card>
+    <p style="margin-left: 2%;">Chapters</p>
+    <ion-card>
+      <app-charpter></app-charpter>
+    </ion-card>
+  </div>
+</ion-content>
