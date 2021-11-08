@@ -10,6 +10,7 @@
         <ion-card-header >{{manga.name}}</ion-card-header>
         <ion-button [routerLink]="['/manga-creation/edit/', manga.manga_id]">Edit</ion-button>
         <ion-button (click)="deleteManga(manga.manga_id)">Delete</ion-button> 
+        <ion-button  (click)="viewManga(manga.manga_id)">View Manga</ion-button>
         <img style="margin-left: 24%;" width="150" class="img" [src]="manga.manga_photo">
         <!-- <ion-card-content style="text-align: center;">{{manga.description}}</ion-card-content> -->
       </ion-card>

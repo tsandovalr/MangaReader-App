@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -23,6 +23,11 @@ const routes: Routes = [
     path: 'manga-creation/edit/:id',
     loadChildren: () => import('./pages/dashboard/manga-creation/manga-creation.module').then( m => m.MangaCreationPageModule)
   },
+  {
+    path: 'view-manga/:id',
+    loadChildren: () => import('./pages/view-manga/view-manga.module').then( m => m.ViewMangaPageModule)
+  },
+
 ];
 
 @NgModule({
