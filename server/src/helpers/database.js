@@ -8,8 +8,7 @@ const {Pool} = require('pg');
     max: 20,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 2000,
-
-}); */
+});  */ 
 
 const pool = new Pool({
     host: 'localhost',
@@ -19,7 +18,7 @@ const pool = new Pool({
     max: 20,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 2000,
-}); 
+});   
 
 pool.on('error', (error, client) => {
     console.log(error);
