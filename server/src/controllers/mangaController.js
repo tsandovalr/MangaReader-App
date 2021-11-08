@@ -73,5 +73,40 @@ const getMangaAsync = async (id) =>{
 } 
 
 
+const updateManga = (req, res) =>{
+    let {name, genres, author, artist, description, manga_photo, publisher, copyright} = req.body;
+    updateMangaAsync(name, genres, author, artist, description, manga_photo, publisher, copyright, req.params.id).then(response =>{
+        if(response.bool){
+            return res.status(200).json(response.content);
+        }else{
+            return res.status(400).json({message: false, text: 'Invalid update of mangas'});
+        } 
+    })
+   
+}
 
-module.exports = { mangaCreation, getMangas , getManga }
+const updateMangaAsync = async (name, genres, author, artist, description, manga_photo, publisher, copyright, manga_id) =>{
+    const query = "UPDATE mangas SET name= $1, genres= $2, author= $3, artist= $4, description= $5, manga_photo= $6, publisher= $7, copyright= $8 WHERE manga_id=$9";
+    const client = await db.getClient();
+    let params = [name, genres, author, artist, description, manga_photo, publisher, copyright, manga_id]
+    try {
+        let result = await client.query(query, params);
+        return {bool: true,content: result.rows[0]};
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const deleteManga = async (req, res) =>{
+    const query = "DELETE FROM mangas WHERE manga_id=$1";
+    const client = await db.getClient();
+    try {
+        let result = await client.query(query, [req.params.id]);
+        return res.status(200).json(result.rows);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+module.exports = { mangaCreation, getMangas , getManga, updateManga, deleteManga }

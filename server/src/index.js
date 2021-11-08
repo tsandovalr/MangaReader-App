@@ -29,7 +29,8 @@ app.use("/delete", uploadFilesRoutes);
 app.use("/manga", mangaRoutes);
 app.use("/manga", mangaRoutes);
 app.use("/manga", mangaRoutes);
-
+app.use("/manga", mangaRoutes);
+app.use("/manga", mangaRoutes);
 
 
 app.listen(port, () => {
