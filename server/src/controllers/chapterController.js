@@ -1,4 +1,6 @@
 const db = require('../helpers/database');
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
 
 
 const cpUpload = upload.fields([{ name: 'chapterpage', maxCount: 1 }, { name: 'chapter', maxCount: 15 }])
@@ -21,7 +23,7 @@ const setChapters = async (cpUpload, id) => {
     }
 
   // req.files is an object (String -> Array) where fieldname is the key, and the value is array of files
-  //  req.files['page'][0] -> File
+  //  req.files['chapterpage'][0] -> File
   //  req.files['chapter'] -> Array
 
 }
