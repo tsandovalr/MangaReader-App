@@ -32,6 +32,12 @@ app.use("/manga", mangaRoutes);
 app.use("/manga", mangaRoutes);
 app.use("/manga", mangaRoutes);
 
+// ---- Gestion De Chapters
+app.use("/manga/chapter", chapterRoutes);
+app.use("/manga/chapter", chapterRoutes);
+app.use("/manga/chapter", chapterRoutes);
+
+
 
 app.listen(port, () => {
     console.log("Server running at port: " + port);
