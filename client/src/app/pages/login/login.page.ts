@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Login } from '../../interfaces/login';
 import { UsersService } from '../../services/user_service/users.service';
 import { MessagesService } from '../../services/messages/messages.service';
-import { Store, Select } from '@ngxs/store'; 
+import { Store} from '@ngxs/store'; 
 import { SetToken } from '../../store/token/token.action';
 import { SetAvatar } from '../../store/avatar/avatar.action';
 import { SetEmail } from '../../store/email/email.action';
@@ -30,12 +30,10 @@ export class LoginPage implements OnInit {
     private messagesService: MessagesService) {}
 
   ngOnInit() { 
-    //this.store.snapshot();
+    
   }
 
   public async loginUser(){
-    /* let {token} = this.store.snapshot();
-    console.log(token); */
     await this.messagesService.presentLoading("logging in .......");
     let caracteres = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 

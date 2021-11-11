@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ViewMangaPageRoutingModule } from './view-manga-routing.module';
 import { ViewMangaPage } from './view-manga.page';
-import { ComponentsModule } from '../../components/components.module'
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   imports: [

@@ -10,6 +10,7 @@ import { NgxsModule } from "@ngxs/store";
 import { TokenState } from "./store/token/token.state";
 import { StateAvatar } from "./store/avatar/avatar.state";
 import { StateEmail } from "./store/email/email.state";
+import { StateManga } from './store/manga/manga.state';
 import { IonicStorageModule } from "@ionic/storage-angular";
 import { ComponentsModule } from './components/components.module';
 import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
@@ -22,7 +23,7 @@ import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
   imports: [
     BrowserModule, 
     IonicModule.forRoot(), 
-    NgxsModule.forRoot([TokenState, StateAvatar, StateEmail]),
+    NgxsModule.forRoot([TokenState, StateAvatar, StateEmail, StateManga]),
     IonicStorageModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,

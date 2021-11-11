@@ -1,3 +1,34 @@
-<p>
-  charpter works!
-</p>
+<ion-list lines="none" class="contactFormList" >
+
+  <ion-item class="inputs-item" lines="none">
+    <ion-input type="text" name="title" [(ngModel)]="charpter.name" placeholder="Name of Chapter" autofocus></ion-input>
+  </ion-item>
+
+  <div *ngIf="add">
+    <div class="wrap">
+
+      <ion-card class="box1">
+          <div mode="buffer" *ngFor="let progress of progressInfo">
+              <span>{{progress.fileName}}</span>
+              <span>{{progress.value}}%</span>
+              <div class="progressbar">
+                  <ion-progress-bar mode="buffer" value={{progress.value}}>
+                  </ion-progress-bar>
+              </div>
+          </div>
+      </ion-card>
+    
+      <div class="box2" >
+        <form enctype="multipart/form-data">
+            <input name="file" type="file" (change)="selectFiles($event)" multiple/>
+            <span *ngIf="fileName">{{fileName}}</span>
+        </form>
+      </div>
+    
+    </div>
+  </div>
+
+  <ion-button expand="block" (click)="addImage()">ADD IMAGE</ion-button>
+  <ion-button expand="block" (click)="saveNewCharpter()">Create Charpter</ion-button> 
+      
+</ion-list>

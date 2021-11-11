@@ -4,6 +4,8 @@ import { MangaService } from '../../services/user_service/manga.service';
 import { CameraService } from '../../services/user_service/camera.service';
 import { MessagesService } from '../../services/messages/messages.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SetManga } from '../../store/manga/manga.action';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-manga-form',
@@ -32,7 +34,8 @@ export class MangaFormComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private cameraService: CameraService,
-    private messagesService: MessagesService) { }
+    private messagesService: MessagesService,
+    private store: Store) { }
 
   ngOnInit(){
     const params = this.activatedRoute.snapshot.params;
@@ -62,6 +65,7 @@ export class MangaFormComponent implements OnInit {
         res =>{
           if(res.message){
             this.messagesService.presentToast('success','Successful creation');
+            this.store.dispatch(new SetManga(this.manga.name))
             this.router.navigate(['/dashboard']);
           }else{
             this.messagesService.presentToast('danger','Invalid response');

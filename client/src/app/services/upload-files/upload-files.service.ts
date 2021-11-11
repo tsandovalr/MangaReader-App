@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpEvent,HttpParams, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaderResponse} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Store } from '@ngxs/store'; 
 
@@ -8,49 +8,25 @@ import { Store } from '@ngxs/store';
 })
 export class UploadFilesService {
 
- //Url obtenida de la variable de enviroments
- //baseUrl = environment.baseUrl;
- public URL_FILES: string = 'http://localhost:8000';
+ //public URL_FILES: string = 'http://localhost:8000/';
+ public URL_FILES: string = "https://manga-reader-node.herokuapp.com/";
 
  //Inyeccion de HttpClient
  constructor(private http: HttpClient,
   private store: Store) { }
 
 //Metodo que envia los archivos al endpoint /upload 
- public async uploadFile(file: File){
-   const formData: FormData = new FormData();
-   let {email} = this.store.snapshot();
-   formData.append('files', file);
-   formData.append('email', email.email);
-   let fetchData = await fetch(`${this.URL_FILES}/upload-files`,{
-     method:"POST",
-     body: formData,
-     credentials:"include",
-     mode: 'no-cors'
-   });
-   return fetchData;
- }
+ public uploadFile(file: File){
+  const formData: FormData = new FormData();
+  let {email} = this.store.snapshot();
+  formData.append('files', file);
+  formData.append('email', email.email);
+  return this.http.post(`${this.URL_FILES}upload-files`, formData, new HttpHeaderResponse());
+}
 
  //Metodo para Obtener los archivos
  public getFiles(){
-   return this.http.get(`${this.URL_FILES}/files`);
+   return this.http.get(`${this.URL_FILES}files/show`);
  }
 
- /* public upload(file: File): Observable<HttpEvent<any>>{
-   const formData: FormData = new FormData();
-   formData.append('files', file);
-   console.log(file);
-   
-   const req = new HttpRequest('POST', `${this.URL_FILES}/upload-files`, formData.get('files'), {
-     reportProgress: true,
-     responseType: 'json'
-   });
-   //this.http.post(`${this.URL_FILES}/upload-files`, file);
-   return this.http.request(req);  
- } */
-
- //Metodo para borrar los archivos
- /* public deleteFile(filename: string){
-   return this.http.get(`${this.URL_FILES}/delete/${filename}`);
- } */
 }
