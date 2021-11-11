@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: ViewMangaPage
+  },
+  {
+    path: 'charpter-creation',
+    loadChildren: () => import('./charpter-creation/charpter-creation.module').then( m => m.CharpterCreationPageModule)
   }
 ];
 

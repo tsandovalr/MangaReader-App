@@ -22,9 +22,24 @@
       <p class="p1" >Copyright</p>
       <p class="p2" >{{manga.copyright}}</p>
     </ion-card>
-    <p style="margin-left: 2%;">Chapters</p>
+    
+    <p style="margin-left: 2.5%; font-size: 18px;">
+      Chapters 
+    </p>
+    <ion-tabs style="width: 45%; height: 8%; margin-top: 215%; margin-left: 58%;">
+        <ion-tab-button tab="charpter-creation">
+          <ion-icon name="add-circle"></ion-icon>
+          <ion-label>Creation Charpter</ion-label>
+        </ion-tab-button>
+    </ion-tabs>
+
     <ion-card>
-      <app-charpter></app-charpter>
+      <div *ngIf="bool">
+        <div *ngFor="let chapter of chapters">
+          {{chapter.name}}
+        </div>
+      </div>
     </ion-card>
+    
   </div>
 </ion-content>

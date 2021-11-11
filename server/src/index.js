@@ -8,6 +8,7 @@ const app = express();
 const authRoutes = require("./routes/userAuth");
 const uploadFilesRoutes = require('./routes/routesUploadFiles');
 const mangaRoutes = require('./routes/mangaRoutes');
+const chapterRoutes = require('./routes/chapterRoutes');
 
 const port = process.env.PORT || 8200;
 
@@ -31,6 +32,12 @@ app.use("/manga", mangaRoutes);
 app.use("/manga", mangaRoutes);
 app.use("/manga", mangaRoutes);
 app.use("/manga", mangaRoutes);
+
+// ---- Gestion De Chapters
+app.use("/manga/chapter", chapterRoutes);
+app.use("/manga/chapter", chapterRoutes);
+app.use("/manga/chapter", chapterRoutes);
+
 
 
 app.listen(port, () => {
