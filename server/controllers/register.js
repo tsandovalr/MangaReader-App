@@ -1,7 +1,8 @@
-const db = require('../helpers/database');
+const db = require('..//helpers/database');
 const bcrypt = require('bcrypt');
 
 const userRegistration = (req, res) => {
+
     let {name, lastname, email, password, avatar} = req.body;
     let field = verifyData(name, email, password);
     if(field !== 'OK'){
@@ -18,11 +19,12 @@ const userRegistration = (req, res) => {
 }
 
 const insertUserData = async (name, lastname, email, password, avatarPath = null) => {
+    
     let client = await db.getClient();
-    let query = 'INSERT INTO users(name, lastname, password, email, avatar, creation_date) VALUES($1, $2, $3, $4, $5, NOW())';
+    let query = 'INSERT INTO users(name, lastname, password, email, avatar, creation_date, rol_id) VALUES($1, $2, $3, $4, $5, NOW(), $6)';
     let salt = await bcrypt.genSalt();
     password = await bcrypt.hash(password, salt);
-    let params = [name, lastname, password, email, avatarPath];
+    let params = [name, lastname, password, email, avatarPath, 2];
     if (avatarPath){
         try{
             await client.query(query, params);
