@@ -9,8 +9,8 @@ import { Register } from '../../interfaces/register';
 })
 export class UsersService {
 
-public API_URI: string = "https://manga-reader-node.herokuapp.com/";
-// public API_URI: string = "http://localhost:8000/";
+//public API_URI: string = "https://manga-reader-node.herokuapp.com/";
+ public API_URI: string = "http://localhost:8000/";
   
   constructor(private http: HttpClient) { }
 
@@ -22,4 +22,8 @@ public API_URI: string = "https://manga-reader-node.herokuapp.com/";
     return this.http.post(`${this.API_URI}user/login`, login);
   }
 
+  public logout(token: any, email: string){
+    let data = {token, email}
+    return this.http.post(`${this.API_URI}user/logout`, data);
+  }
 }

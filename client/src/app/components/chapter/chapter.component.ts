@@ -1,42 +1,57 @@
 import { Component, OnInit } from '@angular/core';
-import { Charpter } from '../../interfaces/charpter';
-import { CharpterServicesService } from '../../services/charpter-services/charpter-services.service';
+import { Chapter } from '../../interfaces/chapter';
+import { ChapterServicesService } from '../../services/chapter-services/chapter-services.service';
 import { MessagesService } from '../../services/messages/messages.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Store } from '@ngxs/store';
 
 @Component({
-  selector: 'app-charpter',
-  templateUrl: './charpter.component.html',
-  styleUrls: ['./charpter.component.scss'],
+  selector: 'app-chapter',
+  templateUrl: './chapter.component.html',
+  styleUrls: ['./chapter.component.scss'],
 })
-export class CharpterComponent implements OnInit {
+export class ChapterComponent implements OnInit {
   
   public edit: Boolean = false;
   public add: Boolean = false;
   public selectedFiles: FileList;
   public progressInfo = []
   public fileName = "";
-  public fileInfos: Observable<any>;
+  public fileInfos: Observable<FileList>;
   public files: any = []
-  public photo: any;
+  public imagenes: any =[];
+  public img: any =[];
   public message: string = "";
-  private charpter: Charpter ={
+  public cont: number = 0;
+  private chapter: Chapter ={
     name: '',
     pages: '',
+    number: 0,
     date: new Date()
   }
 
   constructor(
-    private charpterServices: CharpterServicesService,
+    private charpterServices: ChapterServicesService,
     private messagesService: MessagesService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private store: Store) { }
 
 
-  ngOnInit() {}
+  ngOnInit() {
+    const params = this.activatedRoute.snapshot.params;
+    if(params.id){
+      this.charpterServices.getCharpter(params.id).subscribe(
+        res =>{
+          this.chapter = res;
+          console.log(this.chapter);
+          this.edit = false;
+        },
+        err => console.log(err)
+      )
+    } 
+  }
 
   public addImage(){
     this.add = true;
@@ -57,19 +72,22 @@ export class CharpterComponent implements OnInit {
 
  
   public async uploadFiles(index: number, file: File){
-    delete this.charpter.date
+    delete this.chapter.date
     let {manga_id} = this.store.snapshot()
     this.progressInfo[index] = { value: 0, fileName: file.name };
 
-    await this.messagesService.presentLoading("Creating charpter...");
+    await this.messagesService.presentLoading("Creating chapter...");
     setTimeout(() =>{
-      this.charpterServices.saveCharpter(file, this.charpter.name, manga_id.manga_id).subscribe(
+      this.charpterServices.saveCharpter(file, this.chapter.name, manga_id.manga_id, this.selectedFiles.length).subscribe(
         res =>{
           this.files = res;
-          console.log(this.files.verify);
-          this.progressInfo[index].value = Math.round(10*10);
-          this.messagesService.presentToast('success','Successful creation');
-          this.router.navigate([`/view-manga/${manga_id}`]);
+          if(this.files.verify){
+            this.progressInfo[index].value = Math.round(10*10);
+            this.messagesService.presentToast('success','Successful creation');
+            this.router.navigate([`/view-manga/${manga_id}`]);
+          }else{
+            this.messagesService.presentToast('danger','Invalid');
+          }
         },
         err => {
           this.messagesService.presentToast('danger','Invalid');
@@ -80,16 +98,17 @@ export class CharpterComponent implements OnInit {
 
   }
 
-  public async updateCharpter(){
-    delete this.charpter.date;
+  public async updateChapter(){
+    delete this.chapter.date;
 
-    await this.messagesService.presentLoading("Updating charpter...");
+    await this.messagesService.presentLoading("Updating chapter...");
     const params = this.activatedRoute.snapshot.params;
     setTimeout(() =>{
-      this.charpterServices.updateCharpter(params.id, this.charpter).subscribe(
+      this.charpterServices.updateCharpter(params.id, this.chapter).subscribe(
         res =>{
+          this.edit = true;
           this.messagesService.presentToast('success','Successful upgrade');
-          this.router.navigate(['/dashboard']);
+          this.router.navigate([`/view-chapter/${params.id}`]);
         },
         err => {
           this.messagesService.presentToast('danger','Invalid response');
@@ -99,11 +118,4 @@ export class CharpterComponent implements OnInit {
     }, 2100)
   }
   
-  public deleteFile(filename: string) {
-    this.charpterServices.deleteCharpter(filename).subscribe(res => {
-      this.message = res['message'];
-      this.fileInfos = this.charpterServices.getCharpters();
-    });
-  }
-
 }

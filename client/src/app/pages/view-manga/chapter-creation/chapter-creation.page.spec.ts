@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { CharpterCreationPage } from './charpter-creation.page';
+import { CharpterCreationPage } from './chapter-creation.page';
 
 describe('CharpterCreationPage', () => {
   let component: CharpterCreationPage;

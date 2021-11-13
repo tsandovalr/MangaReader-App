@@ -1,7 +1,7 @@
 <ion-list lines="none" class="contactFormList" >
 
   <ion-item class="inputs-item" lines="none">
-    <ion-input type="text" name="title" [(ngModel)]="charpter.name" placeholder="Name of Chapter" autofocus></ion-input>
+    <ion-input type="text" name="title" [(ngModel)]="chapter.name" placeholder="Name of Chapter" autofocus></ion-input>
   </ion-item>
 
   <div *ngIf="add">
@@ -29,6 +29,12 @@
   </div>
 
   <ion-button expand="block" (click)="addImage()">ADD IMAGE</ion-button>
-  <ion-button expand="block" (click)="saveNewCharpter()">Create Charpter</ion-button> 
+  <ion-button expand="block" (click)="edit ? updateChapter() :saveNewCharpter()">{{edit == true ? 'Update Chapter': 'Create Chapter'}}</ion-button> 
+
+  <!-- <div *ngFor="let imagenes of files">
+    <img src="{{imagenes.content}}" alt="" srcset="">
+  </div>
+ -->
+
       
 </ion-list>

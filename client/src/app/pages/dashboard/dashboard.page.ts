@@ -11,7 +11,7 @@ import { SetManga } from '../../store/manga/manga.action';
 })
 export class DashboardPage implements OnInit {
 
-  public mangas: any = []
+  public mangas: any = [];
 
   constructor(
     private mangaService: MangaService,
@@ -44,6 +44,7 @@ export class DashboardPage implements OnInit {
 
   public viewManga(id: string | number){
     this.mangaService.getManga(id).subscribe( res =>{
+      console.log(res)
       this.store.dispatch(new SetManga(id));
       this.router.navigate([`/view-manga/${id}`]);
     },

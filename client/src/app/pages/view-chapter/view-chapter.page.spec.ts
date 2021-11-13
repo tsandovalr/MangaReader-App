@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { MangaFormComponent } from './manga-form.component';
+import { ViewChapterPage } from './view-chapter.page';
 
-describe('MangaFormComponent', () => {
-  let component: MangaFormComponent;
-  let fixture: ComponentFixture<MangaFormComponent>;
+describe('ViewChapterPage', () => {
+  let component: ViewChapterPage;
+  let fixture: ComponentFixture<ViewChapterPage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ MangaFormComponent ],
+      declarations: [ ViewChapterPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MangaFormComponent);
+    fixture = TestBed.createComponent(ViewChapterPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
