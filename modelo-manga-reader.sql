@@ -33,8 +33,9 @@ CREATE TABLE mangas (
 
 CREATE TABLE chapters (
   chapter_id SERIAL PRIMARY KEY,
-  page VARCHAR[200] NOT NULL,
-  number INT NOT NULL
+  name VARCHAR(100) NOT NULL,
+  page VARCHAR(100) NOT NULL,
+  manga_id INT
 );
 
 CREATE TABLE subscriptions (
@@ -58,6 +59,8 @@ ALTER TABLE mangas ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
 ALTER TABLE mangas ADD FOREIGN KEY (comment_id) REFERENCES comments (comment_id);
 
 ALTER TABLE mangas ADD FOREIGN KEY (chapter_id) REFERENCES chapters (chapter_id);
+
+ALTER TABLE chapters ADD FOREIGN KEY (manga_id) REFERENCES mangas (manga_id);
 
 ALTER TABLE subscriptions ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
 

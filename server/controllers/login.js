@@ -2,9 +2,8 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const db = require('../helpers/database');
 
-// Login
+
 const userLogin = (req, res) => {
-    
     let {email, password} = req.body;
     verifyCredentials(email, password).then(result => {
         if (result.verify){
@@ -26,7 +25,7 @@ const verifyCredentials = async (email, password) => {
             let same = await bcrypt.compare(password, result.rows[0].password);
             console.log(same);
             if (same){
-                let payload = { email: email, password: password, id: result.rows[0].user_id }
+                let payload = { email: email, password: password, id: result.rows[0].user_id, connect: true }
                 let token = jwt.sign(payload, process.env.JWT_SECRET,{expiresIn: 60 * 60 *24});
                 return {verify: true, token: token, avatar: result.rows[0].avatar, email: email, message: 'Login success.'};
             }
