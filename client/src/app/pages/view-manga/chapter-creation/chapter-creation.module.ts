@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { CharpterCreationPageRoutingModule } from './charpter-creation-routing.module';
-import { CharpterCreationPage } from './charpter-creation.page';
+import { ChapterCreationPageRoutingModule } from './chapter-creation-routing.module';
+import { ChapterCreationPage } from './chapter-creation.page';
 import { ComponentsModule  } from '../../../components/components.module'
 
 @NgModule({
@@ -11,9 +11,9 @@ import { ComponentsModule  } from '../../../components/components.module'
     CommonModule,
     FormsModule,
     IonicModule,
-    CharpterCreationPageRoutingModule,
+    ChapterCreationPageRoutingModule,
     ComponentsModule
   ],
-  declarations: [CharpterCreationPage]
+  declarations: [ChapterCreationPage]
 })
-export class CharpterCreationPageModule {}
+export class ChapterCreationPageModule {}

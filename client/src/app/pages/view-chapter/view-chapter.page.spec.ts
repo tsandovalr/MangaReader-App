@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { CharpterComponent } from './charpter.component';
+import { ViewChapterPage } from './view-chapter.page';
 
-describe('CharpterComponent', () => {
-  let component: CharpterComponent;
-  let fixture: ComponentFixture<CharpterComponent>;
+describe('ViewChapterPage', () => {
+  let component: ViewChapterPage;
+  let fixture: ComponentFixture<ViewChapterPage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CharpterComponent ],
+      declarations: [ ViewChapterPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CharpterComponent);
+    fixture = TestBed.createComponent(ViewChapterPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

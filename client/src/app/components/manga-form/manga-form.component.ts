@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Manga } from '../../interfaces/manga';
 import { MangaService } from '../../services/user_service/manga.service';
-import { CameraService } from '../../services/user_service/camera.service';
 import { MessagesService } from '../../services/messages/messages.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SetManga } from '../../store/manga/manga.action';

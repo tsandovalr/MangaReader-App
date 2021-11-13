@@ -27,6 +27,15 @@ const routes: Routes = [
     path: 'view-manga/:id',
     loadChildren: () => import('./pages/view-manga/view-manga.module').then( m => m.ViewMangaPageModule)
   },
+  {
+    path: 'chapter-creation/edit/:id',
+    loadChildren: () => import('./pages/view-manga/chapter-creation/chapter-creation.module').then( m => m.ChapterCreationPageModule)
+  },
+  {
+    path: 'view-chapter/:id',
+    loadChildren: () => import('./pages/view-chapter/view-chapter.module').then( m => m.ViewChapterPageModule)
+  }
+
 
 ];
 
