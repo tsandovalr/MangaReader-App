@@ -22,9 +22,8 @@ const createCharpters = (req, res) =>{
 const saveFilesCharpters = async (filename, name, manga_id, token, list) => {
     try{
          let client = await db.getClient();
-         let url = `http://localhost:8000/${filename}`;
          let query = 'INSERT INTO chapters(name, page, manga_id) VALUES($1, $2, $3)';
-         let params = [name, url, manga_id];
+         let params = [name, filename, manga_id];
          await client.query(query, params);    
          return {verify: true, title:"Success"};    
      }catch(e){
