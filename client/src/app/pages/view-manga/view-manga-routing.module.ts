@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { ViewMangaPage } from './view-manga.page';
 
 const routes: Routes = [
@@ -9,8 +8,8 @@ const routes: Routes = [
     component: ViewMangaPage
   },
   {
-    path: 'charpter-creation',
-    loadChildren: () => import('./charpter-creation/charpter-creation.module').then( m => m.CharpterCreationPageModule)
+    path: 'chapter-creation',
+    loadChildren: () => import('./chapter-creation/chapter-creation.module').then( m => m.ChapterCreationPageModule)
   }
 ];
 

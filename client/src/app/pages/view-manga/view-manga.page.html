@@ -8,38 +8,41 @@
 </ion-header>
 
 <ion-content>
-  <div *ngFor="let manga of mangas">
+  <div>
     <ion-card>
-      <img [src]="manga.manga_photo" >
-      <p class="p1" style="text-align: center;">{{manga.name}}</p>
-      <p class="p2" style="text-align: center;">{{manga.description}}</p>
+      <img  style="margin-left: 11.5%;" width="300" [src]="manga.url" >
+      <p class="p1" style="text-align: center;">{{view_manga.name}}</p>
+      <p class="p2" style="text-align: center;">{{view_manga.description}}</p>
       <p class="p1" > Author</p>
-      <p class="p2" >{{manga.author}}</p>
+      <p class="p2" >{{view_manga.author}}</p>
       <p class="p1" >Artist</p>
-      <p class="p2" >{{manga.artist}}</p>
+      <p class="p2" >{{view_manga.artist}}</p>
       <p class="p1" >Publisher</p>
-      <p class="p2" >{{manga.publisher}}</p>
+      <p class="p2" >{{view_manga.publisher}}</p>
       <p class="p1" >Copyright</p>
-      <p class="p2" >{{manga.copyright}}</p>
+      <p class="p2" >{{view_manga.copyright}}</p>
     </ion-card>
     
     <p style="margin-left: 2.5%; font-size: 18px;">
       Chapters 
     </p>
-    <ion-tabs style="width: 45%; height: 8%; margin-top: 215%; margin-left: 58%;">
-        <ion-tab-button tab="charpter-creation">
+    <ion-tabs style="width: 45%; height: 8%; margin-top: 213%; margin-left: 58%;">
+        <ion-tab-button tab="chapter-creation">
           <ion-icon name="add-circle"></ion-icon>
           <ion-label>Creation Charpter</ion-label>
         </ion-tab-button>
     </ion-tabs>
 
-    <ion-card>
-      <div *ngIf="bool">
-        <div *ngFor="let chapter of chapters">
-          {{chapter.name}}
-        </div>
-      </div>
-    </ion-card>
+    <div *ngFor="let name of name_chapter">
+      <ion-item>
+        <ion-card>
+          <ion-card-header>{{name.name}}</ion-card-header>
+              <!-- <ion-button [routerLink]="['/charpter-creation/edit/', manga.manga_id]">Edit</ion-button> -->
+            <ion-button (click)="deleteChapter(view_manga.manga_id)" >Delete</ion-button>
+            <ion-button (click)="viewChapter(view_manga.manga_id)" >View</ion-button>
+        </ion-card>
+      </ion-item>
+    </div>
     
   </div>
 </ion-content>

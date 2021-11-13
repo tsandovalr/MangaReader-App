@@ -1,6 +1,35 @@
   <ion-list lines="none" class="contactFormList" >
-    <img class="img"  width="200" [src]="manga.manga_photo == '' ? 'https://extyseg.com/wp-content/uploads/2019/04/EXTYSEG-imagen-no-disponible.jpg': manga.manga_photo" (click)="getImages()">
-  
+
+    <div *ngIf="shape">
+      <img class="img"  width="200" [src]="manga.manga_photo == '' ? 'https://extyseg.com/wp-content/uploads/2019/04/EXTYSEG-imagen-no-disponible.jpg': manga.manga_photo" >
+    </div>
+    <div *ngIf="edit">
+      <img class="img"  width="200" [src]="url" >
+    </div>
+    <div *ngIf="shape == false">
+      <div class="wrap">
+
+        <ion-card class="box1">
+            <div mode="buffer" *ngFor="let progress of progressInfo">
+                <span>{{progress.fileName}}</span>
+                <span>{{progress.value}}%</span>
+                <div class="progressbar">
+                    <ion-progress-bar mode="buffer" value={{progress.value}}>
+                    </ion-progress-bar>
+                </div>
+            </div>
+        </ion-card>
+      
+        <div class="box2" >
+          <form enctype="multipart/form-data">
+              <input name="file" type="file" (change)="selectFiles($event)"/>
+              <span *ngIf="fileName">{{fileName}}</span>
+          </form>
+        </div>
+      
+      </div>
+    </div>
+    
     <ion-item class="inputs-item" lines="none">
       <ion-input type="text" name="title" [(ngModel)]="manga.name" placeholder="Title" autofocus></ion-input>
     </ion-item>
@@ -9,9 +38,11 @@
       <ion-input type="text" name="genres" [(ngModel)]="manga.genres" placeholder="Genres" autofocus></ion-input>
     </ion-item>
     
-    <ion-item class="inputs-item" lines="none" >
-      <ion-input type="url" name="image" [(ngModel)]="manga.manga_photo" placeholder="Image URL" autofocus></ion-input>
-    </ion-item>
+    <div *ngIf="shape">
+      <ion-item class="inputs-item" lines="none" >
+        <ion-input type="url" name="image" [(ngModel)]="manga.manga_photo" placeholder="Image URL" autofocus></ion-input>
+      </ion-item>
+    </div>
 
     <ion-item class="inputs-item" lines="none" >
       <ion-input type="text" name="artist" [(ngModel)]="manga.artist" placeholder="Artist" autofocus></ion-input>
@@ -32,8 +63,9 @@
     <ion-item class="inputs-item" lines="none">
       <ion-textarea name="description" [(ngModel)]="manga.description" placeholder="Description" rows="6"></ion-textarea>
     </ion-item>
-    
-    <ion-button expand="block" (click)="edit ? updateManga() :saveNewManga()">Create Manga</ion-button> 
+  
+    <ion-button expand="block" (click)="getImage()">ADD IMAGE</ion-button> 
+    <ion-button expand="block" (click)="edit ? updateManga() :saveNewManga()">{{edit == true ? 'Update Manga': 'Create Manga'}}</ion-button> 
         
   </ion-list>
 
