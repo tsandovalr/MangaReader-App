@@ -14,7 +14,7 @@ const pool = new Pool({
     host: 'localhost',
     database: 'DB-MangaReader',
     user: 'postgres',
-    password: '29758990',
+    password: 'superman96',
     max: 20,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 2000,

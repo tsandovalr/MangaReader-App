@@ -9,6 +9,7 @@ const authRoutes = require("./routes/userAuth");
 const uploadFilesRoutes = require('./routes/routesUploadFiles');
 const mangaRoutes = require('./routes/mangaRoutes');
 const charpterRoutes = require('./routes/charpterRoutes');
+const favoriteRoutes = require('./routes/favoriteRoutes');
 
 const port = process.env.PORT || 8000;
 
@@ -39,6 +40,12 @@ app.use("/charpter", charpterRoutes);
 app.use("/charpter", charpterRoutes);
 app.use("/charpter", charpterRoutes);
 app.use("/charpter", charpterRoutes);
+
+// ---- Gestion De Los Mangas Favoritos
+app.use("/favorite", favoriteRoutes);
+app.use("/favorite", favoriteRoutes);
+
+
 
 
 app.listen(port, () => {
