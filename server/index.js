@@ -8,6 +8,8 @@ const app = express();
 const authRoutes = require("./routes/userAuth");
 const mangaRoutes = require('./routes/mangaRoutes');
 const charpterRoutes = require('./routes/chapterRoutes');
+const shareRoutes = require('./routes/shareRoutes');
+
 
 const port = process.env.PORT || 8000;
 
@@ -36,6 +38,8 @@ app.use("/chapter", charpterRoutes);
 app.use("/chapter", charpterRoutes);
 app.use("/chapter", charpterRoutes);
 
+// ---- Gestion De Social-Sharing
+app.use("/share", shareRoutes);
 
 app.listen(port, () => {
     console.log("Server running at port: " + port);
