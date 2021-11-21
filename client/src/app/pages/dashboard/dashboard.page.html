@@ -1,40 +1,43 @@
-<ion-content>
-  <ion-searchbar ></ion-searchbar>
- <!-- <div>
-   <app-upload-files></app-upload-files>
- </div>  -->
- <div >
-   <div *ngFor="let manga of mangas.content" style="grid-row: auto;">
-    <ion-item >
-      <ion-card >
-        <ion-card-header>{{manga.name}}</ion-card-header>
-        <ion-button [routerLink]="['/manga-creation/edit/', manga.manga_id]">Edit</ion-button>
-        <ion-button (click)="deleteManga(manga.manga_id)">Delete</ion-button> 
-        <ion-button  (click)="viewManga(manga.manga_id)" >View Manga</ion-button>
-        <img style="margin-left: 24%;" width="150" class="img" [src]="mangas.url">
-        <!-- <ion-card-content style="text-align: center;">{{manga.description}}</ion-card-content> -->
-      </ion-card>
-    </ion-item>
-   </div>
+<ion-content [fullscreen]="true">
+  <div>
+    <img src="https://www.industriaanimacion.com/wp-content/uploads/2020/11/anime-.jpg" alt="" srcset="">
+  </div>
+  <ion-item>
+    <p style="margin-left: 2%;">LIST OF MANGAS</p>
+  </ion-item>
   
-  <ion-tabs>
-   <ion-tab-bar slot="bottom">
-     <ion-tab-button tab="profile">
-       <ion-icon name="person-circle"></ion-icon>
-       <ion-label>Profile</ion-label>
-     </ion-tab-button>
- 
-     <ion-tab-button tab="manga-creation">
-       <ion-icon name="add-circle"></ion-icon>
-       <ion-label>Creation Manga</ion-label>
-     </ion-tab-button>
- 
-     <ion-tab-button tab="settings">
-       <ion-icon name="settings"></ion-icon>
-       <ion-label>Settings</ion-label>
-     </ion-tab-button>
-   </ion-tab-bar>
- </ion-tabs>
- </div>
 
+<ion-tabs >
+  <!-- <ion-searchbar disabled="false" style="color: #e1ad01; background: #e1ad01 ;"></ion-searchbar> -->
+  <ion-list >
+      <ion-card>
+       <ion-item *ngFor="let manga of mangas.content">
+         <ion-thumbnail slot="start">
+           <ion-img [src]="mangas.url"></ion-img>
+         </ion-thumbnail>
+         <ion-label>{{manga.name}}</ion-label>
+         <ion-button [routerLink]="['/manga-creation/edit/', manga.manga_id]">Edit</ion-button>
+         <ion-button (click)="deleteManga(manga.manga_id)">Delete</ion-button> 
+         <ion-button  (click)="viewManga(manga.manga_id)" >View</ion-button>
+       </ion-item>
+      </ion-card>
+  </ion-list>
+
+ <ion-tab-bar slot="bottom" [translucent]="true" style="background-color: #1f1d1a;">
+   <ion-tab-button tab="profile">
+     <ion-icon name="person-circle"></ion-icon>
+     <ion-label>Profile</ion-label>
+   </ion-tab-button>
+   <ion-tab-button tab="manga-creation">
+     <ion-icon name="person-circle"></ion-icon>
+     <ion-label>manga</ion-label>
+     <ion-badge >manga</ion-badge>
+   </ion-tab-button>
+   <ion-tab-button tab="settings">
+     <ion-icon name="settings"></ion-icon>
+     <ion-label>Settings</ion-label>
+   </ion-tab-button>
+ </ion-tab-bar>
+</ion-tabs>
 </ion-content>
+

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Register } from '../../interfaces/register';
 import { UsersService } from '../../services/user_service/users.service';
 import { MessagesService } from '../../services/messages/messages.service';
+import { Store} from '@ngxs/store'; 
 
 
 @Component({

@@ -24,7 +24,6 @@ export class ViewChapterPage implements OnInit {
     this.chapterService.getCharpter(this.id).subscribe(
       res =>{
         this.chapters = res;
-        console.log(this.chapters.content);
       },
       err => console.log(err)
     ) 

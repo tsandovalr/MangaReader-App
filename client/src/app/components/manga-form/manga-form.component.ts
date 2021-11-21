@@ -119,7 +119,6 @@ export class MangaFormComponent implements OnInit {
     setTimeout(() =>{
       this.mangaService.saveManga(file, this.manga.manga_id, this.manga.name, this.manga.genres, this.manga.author, this.manga.artist, this.manga.publisher, this.manga.copyright, this.manga.description).subscribe(
         res =>{
-          console.log(res)
           this.progressInfo[index].value = Math.round(10*10);
           this.messagesService.presentToast('success','Successful creation');
           this.store.dispatch(new SetManga(this.manga.name))

@@ -4,4 +4,5 @@ export interface Login{
     verify?: boolean;
     token?: string;
     avatar?: string;
+    user_data?: string;
 }

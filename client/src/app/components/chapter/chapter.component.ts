@@ -45,7 +45,6 @@ export class ChapterComponent implements OnInit {
       this.charpterServices.getCharpter(params.id).subscribe(
         res =>{
           this.chapter = res;
-          console.log(this.chapter);
           this.edit = false;
         },
         err => console.log(err)
