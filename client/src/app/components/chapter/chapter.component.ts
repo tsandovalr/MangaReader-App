@@ -83,7 +83,8 @@ export class ChapterComponent implements OnInit {
           if(this.files.verify){
             this.progressInfo[index].value = Math.round(10*10);
             this.messagesService.presentToast('success','Successful creation');
-            this.router.navigate([`/view-manga/${manga_id}`]);
+            /* this.router.navigate([`/view-manga/${manga_id}`]); */
+            this.router.navigate([`/dashboard`]);
           }else{
             this.messagesService.presentToast('danger','Invalid');
           }
