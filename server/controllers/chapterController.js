@@ -1,9 +1,7 @@
-const mp = require("multiparty");
-const fs = require("fs");
 const jwt = require("jsonwebtoken");
 const db = require('../helpers/database');
-//const sharp = require('sharp');
-const path = require('path');
+//const URL ='https://manga-reader-node.herokuapp.com/';
+const URL ='http://localhost:8000/';
 
 const createCharpters = (req, res) =>{
      let { body, files} = req
@@ -22,8 +20,9 @@ const createCharpters = (req, res) =>{
 const saveFilesCharpters = async (filename, name, manga_id, token, list) => {
     try{
          let client = await db.getClient();
+         let url = URL+`${filename}`;
          let query = 'INSERT INTO chapters(name, page, manga_id) VALUES($1, $2, $3)';
-         let params = [name, filename, manga_id];
+         let params = [name, url, manga_id];
          await client.query(query, params);    
          return {verify: true, title:"Success"};    
      }catch(e){

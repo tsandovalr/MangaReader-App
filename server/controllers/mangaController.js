@@ -1,4 +1,7 @@
 const db = require('../helpers/database');
+const jwt = require('jsonwebtoken');
+//const URL ='https://manga-reader-node.herokuapp.com/';
+const URL ='http://localhost:8000/';
 
 const mangaCreation = (req, res) => {
     let { body, files} = req;
@@ -40,17 +43,23 @@ const getMangas = (req, res) =>{
 }
 
 const getMangasAsync = async ()=>{
+
     let client = await db.getClient();
     let query = 'SELECT * FROM mangas';
     try{
         let result = await client.query(query);
-        return {bool: true, content: result.rows, url: `http://localhost:8000/${result.rows[0].manga_photo}`};
+        if(result.rowCount > 0){
+            return {bool: true, content: result.rows, url: URL+`${result.rows[0].manga_photo}`};
+        }else{
+            return {bool: false};
+        }
     }catch(err){
         console.log(err);
     }
 }
 
 const getManga = (req, res) =>{
+
     if(req.params.id){
         getMangaAsync(req.params.id).then(response =>{
             if(response.bool){
@@ -63,11 +72,12 @@ const getManga = (req, res) =>{
 }
 
 const getMangaAsync = async (id) =>{
+
     let client = await db.getClient();
     let query = 'SELECT * FROM mangas WHERE manga_id = $1';
     try{
         let result = await client.query(query, [id]);
-        return {bool: true,content: result.rows, url: `http://localhost:8000/${result.rows[0].manga_photo}`};
+        return {bool: true,content: result.rows, url: URL+`${result.rows[0].manga_photo}`};
     }catch(err){
         console.log(err);
     }
@@ -102,9 +112,11 @@ const deleteManga = async (req, res) =>{
     if(req.params.id){
         const query1 = "DELETE FROM chapters WHERE manga_id=$1";
         const query2 = "DELETE FROM mangas WHERE manga_id=$1";
+        const query3 = 'DELETE FROM subscriptions WHERE manga_id=$1';
         const client = await db.getClient();
         try {
             await client.query(query1, [req.params.id]);
+            await client.query(query3, [req.params.id]);
             await client.query(query2, [req.params.id]);
             return res.status(200).json({result: 'Data Delete'});
         } catch (error) {
@@ -113,5 +125,43 @@ const deleteManga = async (req, res) =>{
     }
 }
 
+const toSubcribe = async (req,res) =>{
+    let { body } = req;
+    const client = await db.getClient();
+    let query = '';
+    if(body.manga_id && body.token){
+        let token = jwt.verify(body.token, process.env.JWT_SECRET);
+       if(token.connect){
+           try {
+               query = 'INSERT INTO subscriptions(user_id, manga_id) VALUES($1, $2)';
+               await client.query(query,[token.id, body.manga_id]);
 
-module.exports = { mangaCreation, getMangas , getManga, updateManga, deleteManga }
+               query = 'SELECT * FROM users INNER JOIN subscriptions ON users.user_id = subscriptions.user_id';
+               let result1 = await client.query(query);
+
+               query = 'SELECT * FROM mangas INNER JOIN subscriptions ON mangas.manga_id = subscriptions.manga_id';
+               let result2 = await client.query(query);
+
+               if(result1.rows[0].user_id === result2.rows[0].user_id && result1.rows[0].manga_id === result2.rows[0].manga_id){
+                   return res.status(200).json({verify: true});
+               }else{
+                   return res.status(503).json({verify: false});
+               }
+           } catch (error) {
+            console.log(error);
+           }
+       }else{
+           res.status(404).json({verify: false, message: 'Fail Connect'});
+       }
+    }else{
+        return res.status(503).json({verify: false, message: 'there is no data'});
+    }
+}
+
+module.exports = { 
+    mangaCreation, 
+    getMangas , 
+    getManga, 
+    updateManga, 
+    deleteManga,
+    toSubcribe }
