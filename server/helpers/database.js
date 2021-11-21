@@ -1,6 +1,6 @@
 const {Pool} = require('pg');
 
-const pool = new Pool({
+/* const pool = new Pool({
     host: 'localhost',
     database: 'DB-MangaReader',
     user: 'postgres',
@@ -9,7 +9,7 @@ const pool = new Pool({
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 2000,
 });  
-/* 
+ */
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl:{
@@ -18,7 +18,7 @@ const pool = new Pool({
     idleTimeoutMillis: 1000,
     min: 0,
     query_timeout: 5000
-});  */
+});  
   
 
 pool.on('error', (error, client) => {

@@ -9,7 +9,7 @@ import { Store } from '@ngxs/store';
 })
 export class ChapterServicesService {
 
-//public API_URI: string = "https://manga-reader-node.herokuapp.com/";
+ //public API_URI: string = "https://manga-reader-node.herokuapp.com/";
  public API_URI: string = "http://localhost:8000/";
   
  constructor(

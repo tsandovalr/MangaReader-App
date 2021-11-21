@@ -1,9 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/dashboard" ></ion-back-button>
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
     </ion-buttons>
-    <ion-title style="text-align: center;">View Manga</ion-title>
+    <ion-buttons slot="end" (click)="toSubcribe()">
+      <ion-icon name="star-outline" slot="end"></ion-icon>
+    </ion-buttons>
+    <ion-title style="margin-left: 25%;">View Manga</ion-title>
   </ion-toolbar>
 </ion-header>
 

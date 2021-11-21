@@ -11,9 +11,9 @@ import { TokenState } from "./store/token/token.state";
 import { StateAvatar } from "./store/avatar/avatar.state";
 import { StateEmail } from "./store/email/email.state";
 import { StateManga } from './store/manga/manga.state';
+import { StateName } from './store/name/name.state';
 import { IonicStorageModule } from "@ionic/storage-angular";
 import { ComponentsModule } from './components/components.module';
-import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
   imports: [
     BrowserModule, 
     IonicModule.forRoot(), 
-    NgxsModule.forRoot([TokenState, StateAvatar, StateEmail, StateManga]),
+    NgxsModule.forRoot([TokenState, StateAvatar, StateEmail, StateManga, StateName]),
     IonicStorageModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
@@ -31,8 +31,7 @@ import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
     FormsModule
   ],
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    Camera
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent],
 })

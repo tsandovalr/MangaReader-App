@@ -51,6 +51,11 @@ export class MangaService {
   public deleteManga(id: string | number){
     return this.http.delete(`${this.API_URI}manga/${id}`)
   }
+
+  public toSubcribe(manga_id: string | number, token:any){
+    let objet ={manga_id, token}
+    return this.http.post(`${this.API_URI}manga/tosubcribe`, objet);
+  }
   
 
 }

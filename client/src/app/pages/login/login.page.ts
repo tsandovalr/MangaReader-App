@@ -4,6 +4,7 @@ import { Login } from '../../interfaces/login';
 import { UsersService } from '../../services/user_service/users.service';
 import { MessagesService } from '../../services/messages/messages.service';
 import { Store} from '@ngxs/store'; 
+import { SetName } from '../../store/name/name.action';
 import { SetToken } from '../../store/token/token.action';
 import { SetAvatar } from '../../store/avatar/avatar.action';
 import { SetEmail } from '../../store/email/email.action';
@@ -21,7 +22,8 @@ export class LoginPage implements OnInit {
     email: '',
     verify: null,
     token: '',
-    avatar: ''
+    avatar: '',
+    user_data: ''
   }
 
   constructor( private router: Router, 
@@ -45,6 +47,7 @@ export class LoginPage implements OnInit {
         this.userService.requestLogin(this.login).subscribe(
           res => {
             if(res.verify){
+              this.store.dispatch(new SetName(res.user_data))
               this.store.dispatch(new SetToken(res.token));
               this.store.dispatch(new SetEmail(res.email));
               this.store.dispatch(new SetAvatar(res.avatar));

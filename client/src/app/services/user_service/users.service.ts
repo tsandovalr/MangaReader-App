@@ -9,7 +9,7 @@ import { Register } from '../../interfaces/register';
 })
 export class UsersService {
 
-//public API_URI: string = "https://manga-reader-node.herokuapp.com/";
+ //public API_URI: string = "https://manga-reader-node.herokuapp.com/";
  public API_URI: string = "http://localhost:8000/";
   
   constructor(private http: HttpClient) { }
@@ -25,5 +25,15 @@ export class UsersService {
   public logout(token: any, email: string){
     let data = {token, email}
     return this.http.post(`${this.API_URI}user/logout`, data);
+  }
+
+  public mangasSubscribed(token: any){
+    let data = {token};
+    return this.http.post(`${this.API_URI}user/mangas`, data);
+  }
+
+  public unsubscribeManga(token: any, manga_id: string | number){
+    let data = {token, manga_id}
+    return this.http.post(`${this.API_URI}user/unsubscribeManga`, data);
   }
 }

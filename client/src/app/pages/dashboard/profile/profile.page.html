@@ -7,6 +7,40 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  
+  <ion-row>
+    <ion-col>
+      <ion-slides>
+        <ion-slide >
+          <!-- <img  class="pick-avatar" [src]="imgSrc"/> -->
+          <img  class="pick-avatar" src="https://toppng.com/uploads/preview/user-font-awesome-nuevo-usuario-icono-11563566658mjtfvilgcs.png"/>
+        </ion-slide>
+      </ion-slides>
+    </ion-col>
+  </ion-row>
+ <!--  <div class="data-user">
+    <p>{{name}}</p><p>{{lastname}}</p>
+  </div> -->
+  
+    <p style="text-align: center; font-size: large; font-family: Arial, Helvetica, sans-serif;">anderson gutierrez</p>
+    <br>
+  <ion-item>
+    <p style="font-size: large; font-family: Arial, Helvetica, sans-serif; margin-left: 1%;">Manga to which you are subscribed</p>
+  </ion-item>
+
+  <ion-list >
+    <ion-card>
+     <ion-item *ngFor="let manga of mangas.content">
+       <ion-thumbnail slot="start">
+         <ion-img [src]="mangas.url"></ion-img>
+       </ion-thumbnail>
+       <ion-label>{{manga.name}}</ion-label>
+      <!--  <ion-button [routerLink]="['/manga-creation/edit/', manga.manga_id]">Edit</ion-button> -->
+       <ion-button (click)="unsubscribeManga(manga.manga_id)">Unsubscribe</ion-button> 
+       <ion-button  (click)="viewManga(manga.manga_id)" >View</ion-button>
+     </ion-item>
+    </ion-card>
+</ion-list>
 
 </ion-content>
