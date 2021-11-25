@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+/* import { LocalNotifications } from '@capacitor/local-notifications'; */
 import { Chapter } from '../../interfaces/chapter';
 import { ChapterServicesService } from '../../services/chapter-services/chapter-services.service';
 import { MessagesService } from '../../services/messages/messages.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Store } from '@ngxs/store';
+
 
 @Component({
   selector: 'app-chapter',
@@ -29,14 +31,16 @@ export class ChapterComponent implements OnInit {
     pages: '',
     number: 0,
     date: new Date()
-  }
+  };
 
   constructor(
     private charpterServices: ChapterServicesService,
     private messagesService: MessagesService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private store: Store) { }
+    private store: Store,
+/*     private notifi: typeof LocalNotifications */
+    ) { }
 
 
   ngOnInit() {
@@ -83,8 +87,8 @@ export class ChapterComponent implements OnInit {
           if(this.files.verify){
             this.progressInfo[index].value = Math.round(10*10);
             this.messagesService.presentToast('success','Successful creation');
-            /* this.router.navigate([`/view-manga/${manga_id}`]); */
             this.router.navigate([`/dashboard`]);
+            
           }else{
             this.messagesService.presentToast('danger','Invalid');
           }

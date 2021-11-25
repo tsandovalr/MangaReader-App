@@ -5,11 +5,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MangaFormComponent } from './manga-form/manga-form.component';
 import { ChapterComponent } from './chapter/chapter.component';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   declarations: [
       MangaFormComponent,
-      ChapterComponent
+      ChapterComponent,
+      CommentComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { ChapterComponent } from './chapter/chapter.component';
   ],
   exports: [
     MangaFormComponent,
-    ChapterComponent
+    ChapterComponent,
+    CommentComponent
   ],
   providers:[
    

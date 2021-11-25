@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MangaService } from '../../services/user_service/manga.service';
 import { ChapterServicesService } from '../../services/chapter-services/chapter-services.service';
+import { CommentsService } from '../../services/chapter-services/comments.service';  
 import { MessagesService } from '../../services/messages/messages.service';
 import { Store } from '@ngxs/store';
 
@@ -14,19 +15,23 @@ export class ViewMangaPage implements OnInit {
  
   public manga: any = [];
   public view_manga: any = [];
+  public data: any = [];
   public name_chapter: any =[];
   public chapters: any = [];
+  public chapter: any = [];
   public response: any = [];
   public bool: boolean = false;
   public verify: boolean = false;
-  public text: string = 'No hay mangas disponibles';
+  public text: any = [];
 
   constructor(
     private mangaService: MangaService,
     private messageService: MessagesService,
     private router: Router,
     private store: Store,
-    private charpterService: ChapterServicesService) { }
+    private charpterService: ChapterServicesService,
+    private commentService: CommentsService 
+    ) { }
 
   ngOnInit() {
     this.getManga();
@@ -36,6 +41,7 @@ export class ViewMangaPage implements OnInit {
     }
   }
   
+
   public toSubcribe(){
     let {manga_id, token} = this.store.snapshot();
     if(manga_id && token){
@@ -56,12 +62,13 @@ export class ViewMangaPage implements OnInit {
     }
   }
 
-  public getCharpter(id: any){
+  public getCharpter(id: string | number){
     this.charpterService.getCharpter(id).subscribe(
       res =>{
         this.chapters = res;
         this.name_chapter = this.chapters.content;
         this.bool = true;
+        this.getComments()
       },
       err => console.log(err)
     )
@@ -94,17 +101,35 @@ export class ViewMangaPage implements OnInit {
 
   public viewChapter(id: string | number){
     this.charpterService.getCharpter(id).subscribe( res =>{
-      console.log(res)
       this.router.navigate([`/view-chapter/${id}`]);
     },
     err => console.log(err))
   } 
-  
 
-  /* public createChapter(){
-    this.router.navigate(['/charpter-creation']);
-    this.bool = true;
-    return this.bool 
-  } */
+  public getComments(){
+    this.commentService.getComments().subscribe(
+        res =>{
+          this.data = res;
+          this.text = this.data.content;
+          console.log(this.text)
+        },
+        err => console.log(err)
+      ) 
+  }
+
+  public commentChapter(id: string | number){
+    this.router.navigate([`/comment-creation/${id}`]);
+  }
+  
+  public deleteComment(id: string | number){
+    if(id){
+      this.commentService.deleteComment(id).subscribe(
+        res =>{
+          this.getComments();
+        },
+        err => console.log(err)
+      )
+    }  
+  }
 
 }

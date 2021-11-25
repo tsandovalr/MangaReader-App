@@ -10,7 +10,12 @@ const routes: Routes = [
   {
     path: 'chapter-creation',
     loadChildren: () => import('./chapter-creation/chapter-creation.module').then( m => m.ChapterCreationPageModule)
+  },
+  {
+    path: 'comment-creation',
+    loadChildren: () => import('./comment-creation/comment-creation.module').then( m => m.CommentCreationPageModule)
   }
+
 ];
 
 @NgModule({

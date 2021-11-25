@@ -1,0 +1,8 @@
+
+  <ion-item class="inputs-item" lines="none">
+    <ion-textarea name="comment" [(ngModel)]="comment.text" placeholder="Comment" rows="5"></ion-textarea>
+  </ion-item>
+    
+  <ion-button (click)="edit ? updateComment() :addComment()">{{edit == true ? 'Update': 'Comment'}}</ion-button>
+
+

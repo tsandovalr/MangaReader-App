@@ -9,7 +9,6 @@ import { SetToken } from '../../store/token/token.action';
 import { SetAvatar } from '../../store/avatar/avatar.action';
 import { SetEmail } from '../../store/email/email.action';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -29,7 +28,9 @@ export class LoginPage implements OnInit {
   constructor( private router: Router, 
     private userService: UsersService,
     private store: Store, 
-    private messagesService: MessagesService) {}
+    private messagesService: MessagesService,
+   
+    ) {}
 
   ngOnInit() { 
     

@@ -10,7 +10,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
   <div>
     <ion-card>
       <img  style="margin-left: 11.5%;" width="300" [src]="manga.url" >
@@ -29,23 +29,31 @@
     <p style="margin-left: 2.5%; font-size: 18px;">
       Chapters 
     </p>
-    <ion-tabs style="width: 45%; height: 8%; margin-top: 213%; margin-left: 58%;">
+    <ion-tabs style="width: 45%; height: 8%; margin-top: 222%; margin-left: 58%;">
         <ion-tab-button tab="chapter-creation">
           <ion-icon name="add-circle"></ion-icon>
           <ion-label>Creation Charpter</ion-label>
         </ion-tab-button>
     </ion-tabs>
 
-    <div *ngFor="let name of name_chapter">
-      <ion-item>
-        <ion-card>
-          <ion-card-header>{{name.name}}</ion-card-header>
-              <!-- <ion-button [routerLink]="['/charpter-creation/edit/', manga.manga_id]">Edit</ion-button> -->
+    <ion-list>
+      <ion-card>
+        <ion-item *ngFor="let name of name_chapter | slice:0:1">
+          <ion-label>Chapter {{name.name}}</ion-label>
             <ion-button (click)="deleteChapter(view_manga.manga_id)" >Delete</ion-button>
             <ion-button (click)="viewChapter(view_manga.manga_id)" >View</ion-button>
-        </ion-card>
-      </ion-item>
-    </div>
+            <ion-button (click)="commentChapter(view_manga.manga_id)">Comment</ion-button>
+        </ion-item>
+        <ion-item *ngFor="let comment of text">
+          <ion-card-header>
+            <ion-card-subtitle>{{comment.text}}</ion-card-subtitle>
+            <ion-card-subtitle>{{comment.date | date: 'yyyy-MM-dd'}}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-button [routerLink]="['/comment-creation/', comment.comment_id]">Edit</ion-button> 
+          <ion-button (click)="deleteComment(comment.comment_id)" >Delete</ion-button>
+        </ion-item> 
+      </ion-card>
+    </ion-list>
     
   </div>
 </ion-content>
