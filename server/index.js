@@ -8,6 +8,7 @@ const app = express();
 const authRoutes = require("./routes/userAuth");
 const mangaRoutes = require('./routes/mangaRoutes');
 const charpterRoutes = require('./routes/chapterRoutes');
+const commentRoutes = require('./routes/commentRoutes');
 
 let whitelist = ['http://localhost:8100'];
 const port = process.env.PORT || 8000;
@@ -51,6 +52,12 @@ app.use("/chapter", charpterRoutes);
 app.use("/chapter", charpterRoutes);
 app.use("/chapter", charpterRoutes);
 
+// --- Comentarios
+app.use("/chapter/comment", commentRoutes);
+app.use("/chapter/comment", commentRoutes);
+app.use("/chapter/comment", commentRoutes);
+app.use("/chapter/comment", commentRoutes);
+app.use("/chapter/comment", commentRoutes);
 
 app.listen(port, () => {
     console.log("Server running at port: " + port);
