@@ -59,6 +59,60 @@ export class MangaFormComponent implements OnInit {
     }  
   }
 
+  public selectFiles(event: any) {
+    this.progressInfo = [];
+    event.target.files.length == 1 ? this.fileName = event.target.files[0].name : this.fileName = event.target.files.length + " archivos";
+    this.selectedFiles = event.target.files;
+  }
+
+  public async saveNewManga() {
+    console.log(this.selectedFiles);
+    for (let i = 0; i < this.selectedFiles.length; i++) {
+     await this.uploadFile(i,this.selectedFiles[i]);
+    }
+  }
+
+
+  public async uploadFile(index:number, file: File){
+    delete this.manga.publication_date
+    this.progressInfo[index] = { value: 0, fileName: file.name };
+    
+    await this.messagesService.presentLoading("Creating Manga...");
+    setTimeout(() =>{
+      this.mangaService.saveManga(file, this.manga.manga_id, this.manga.name, this.manga.genres, this.manga.author, this.manga.artist, this.manga.publisher, this.manga.copyright, this.manga.description).subscribe(
+        res =>{
+          this.progressInfo[index].value = Math.round(10*10);
+          this.messagesService.presentToast('success','Successful creation');
+          this.store.dispatch(new SetManga(this.manga.name))
+          this.router.navigate(['/dashboard']);
+        },
+        err => console.error(err)
+      );
+    }, 2100)
+
+  }
+
+
+  public async updateManga(){
+    delete this.manga.publication_date;
+
+    await this.messagesService.presentLoading("Updating manga...");
+    const params = this.activatedRoute.snapshot.params;
+    setTimeout(() =>{
+      this.mangaService.updateManga(params.id, this.manga).subscribe(
+        res =>{
+          this.messagesService.presentToast('success','Successful upgrade');
+          this.router.navigate(['/dashboard']);
+        },
+        err => {
+          this.messagesService.presentToast('danger','Invalid response');
+          console.log(err)
+        }
+      )
+    }, 2100)
+  } 
+
+
   async getImage() {
     const actionSheet = await this.actionSheetController.create({
       header: 'Choose From',
@@ -96,81 +150,5 @@ export class MangaFormComponent implements OnInit {
       return this.shape
     }
   }
-
-  public selectFiles(event: any) {
-    this.progressInfo = [];
-    event.target.files.length == 1 ? this.fileName = event.target.files[0].name : this.fileName = event.target.files.length + " archivos";
-    this.selectedFiles = event.target.files;
-  }
-
-  public async saveNewManga() {
-    console.log(this.selectedFiles);
-    for (let i = 0; i < this.selectedFiles.length; i++) {
-     await this.uploadFile(i,this.selectedFiles[i]);
-    }
-  }
-
-
-  public async uploadFile(index:number, file: File){
-    delete this.manga.publication_date
-    this.progressInfo[index] = { value: 0, fileName: file.name };
-    
-    await this.messagesService.presentLoading("Creating Manga...");
-    setTimeout(() =>{
-      this.mangaService.saveManga(file, this.manga.manga_id, this.manga.name, this.manga.genres, this.manga.author, this.manga.artist, this.manga.publisher, this.manga.copyright, this.manga.description).subscribe(
-        res =>{
-          this.progressInfo[index].value = Math.round(10*10);
-          this.messagesService.presentToast('success','Successful creation');
-          this.store.dispatch(new SetManga(this.manga.name))
-          this.router.navigate(['/dashboard']);
-        },
-        err => console.error(err)
-      );
-    }, 2100)
-
-  }
-
-/*   public async saveNewManga(){
-    delete this.manga.publication_date
-    delete this.manga.manga_id;
-
-    await this.messagesService.presentLoading("Creating Manga...");
-    setTimeout(() =>{
-      this.mangaService.saveManga(this.manga).subscribe(
-        res =>{
-          if(res.message){
-            this.messagesService.presentToast('success','Successful creation');
-            this.store.dispatch(new SetManga(this.manga.name))
-            this.router.navigate(['/dashboard']);
-          }else{
-            this.messagesService.presentToast('danger','Invalid response');
-            return;
-          }
-        },
-        err => console.error(err)
-      );
-    }, 2100)
-
-  } */
-
-
-  public async updateManga(){
-    delete this.manga.publication_date;
-
-    await this.messagesService.presentLoading("Updating manga...");
-    const params = this.activatedRoute.snapshot.params;
-    setTimeout(() =>{
-      this.mangaService.updateManga(params.id, this.manga).subscribe(
-        res =>{
-          this.messagesService.presentToast('success','Successful upgrade');
-          this.router.navigate(['/dashboard']);
-        },
-        err => {
-          this.messagesService.presentToast('danger','Invalid response');
-          console.log(err)
-        }
-      )
-    }, 2100)
-  } 
-
+  
 }

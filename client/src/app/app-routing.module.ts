@@ -34,9 +34,11 @@ const routes: Routes = [
   {
     path: 'view-chapter/:id',
     loadChildren: () => import('./pages/view-chapter/view-chapter.module').then( m => m.ViewChapterPageModule)
+  },
+  {
+    path: 'comment-creation/:id',
+    loadChildren: () => import('./pages/view-manga/comment-creation/comment-creation.module').then( m => m.CommentCreationPageModule)
   }
-
-
 ];
 
 @NgModule({

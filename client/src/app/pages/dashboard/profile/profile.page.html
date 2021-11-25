@@ -36,7 +36,6 @@
          <ion-img [src]="mangas.url"></ion-img>
        </ion-thumbnail>
        <ion-label>{{manga.name}}</ion-label>
-      <!--  <ion-button [routerLink]="['/manga-creation/edit/', manga.manga_id]">Edit</ion-button> -->
        <ion-button (click)="unsubscribeManga(manga.manga_id)">Unsubscribe</ion-button> 
        <ion-button  (click)="viewManga(manga.manga_id)" >View</ion-button>
      </ion-item>

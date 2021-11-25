@@ -46,6 +46,7 @@ export class ProfilePage implements OnInit {
       res =>{
         this.unsubscribe = res;
         if(this.unsubscribe.verify){
+          this.router.navigate([`/dashboard`]);
           this.messagesService.presentToast('success','Unsubscribe');
         }else{
           this.messagesService.presentToast('danger','Invalid Unsubscribe');

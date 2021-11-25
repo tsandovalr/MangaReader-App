@@ -29,6 +29,8 @@
       
       </div>
     </div>
+
+    <ion-button expand="block" (click)="getImage()">ADD IMAGE</ion-button>
     
     <ion-item class="inputs-item" lines="none">
       <ion-input type="text" name="title" [(ngModel)]="manga.name" placeholder="Title" autofocus></ion-input>
@@ -63,8 +65,7 @@
     <ion-item class="inputs-item" lines="none">
       <ion-textarea name="description" [(ngModel)]="manga.description" placeholder="Description" rows="6"></ion-textarea>
     </ion-item>
-  
-    <ion-button expand="block" (click)="getImage()">ADD IMAGE</ion-button> 
+   
     <ion-button expand="block" (click)="edit ? updateManga() :saveNewManga()">{{edit == true ? 'Update Manga': 'Create Manga'}}</ion-button> 
         
   </ion-list>
